@@ -38,10 +38,12 @@ public class ProductOrder {
 	private Date expirydate;
 	@Column(name="deliverystatus")
 	private String deliverystatus;
+	@Column(name="productid")
+	private int productId;
 	public ProductOrder() {}
 	public ProductOrder(int orderId, String productname, double priceperunit, double quantityvalue,
 			double totalprice, String warehouseId, String distributorId, LocalDate dateoforder, LocalDate dateofdelivery,
-			Date manufacturingdate, Date expirydate, String deliverystatus) {
+			Date manufacturingdate, Date expirydate, String deliverystatus,int productId) {
 		this.orderId = orderId;
 		this.productname = productname;
 		this.priceperunit = priceperunit;
@@ -54,6 +56,13 @@ public class ProductOrder {
 		this.manufacturingdate = manufacturingdate;
 		this.expirydate = expirydate;
 		this.deliverystatus = deliverystatus;
+		this.productId=productId;
+	}
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 	public int getOrderId() {
 		return orderId;

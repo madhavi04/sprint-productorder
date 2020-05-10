@@ -22,6 +22,7 @@ public ProductOrder placeorder(ProductOrder ppo,ProductSpecs pspec ) {
 	double quavalue=ppo.getQuantityvalue();
 	double unitprice=pspec.getPriceperunit();
 	ppo.setTotalprice(unitprice*quavalue);
+	
 	ppo.setProductname(pspec.getProductname());
 	ppo.setPriceperunit(pspec.getPriceperunit());
 	ppo.setQuantityvalue(ppo.getQuantityvalue());
