@@ -58,7 +58,7 @@ public ResponseEntity<Orders> getProductOrder(@PathVariable String distributorId
 @PostMapping("/placeorder")
 public ResponseEntity<String> placeorder(@RequestBody ProductOrder rmo)
 {
-	ProductSpecs sour=restTemplate.getForObject("http://localhost:8095/GetAllRawMaterialSpecs/",ProductSpecs.class);
+	ProductSpecs sour=restTemplate.getForObject("http://localhost:8123/GetAllProductSpecs/",ProductSpecs.class);
 	if(sour==null)
 	{
 		throw new UnsuccessfullOrder("unsuccesful in placing order");
@@ -88,14 +88,22 @@ private ResponseEntity<ProductOrder> getorder(@PathVariable int orderId) {
 		return new ResponseEntity<ProductOrder>(d, new HttpHeaders(), HttpStatus.OK);
 	}
 }
-@PutMapping("/Updatedeliverystatus")
-public ResponseEntity<String> updateorder(@RequestBody ProductOrder f)
-	{
-		boolean e = pos.updateproductorder(f);
+@PutMapping("/Updatedeliverystatus/{orderId}/{deliverystatus}")
+
+public ResponseEntity<String> updateorder(@PathVariable int orderId,@PathVariable String deliverystatus)
+{
+		try
+		{
+		boolean e = pos.updateproductorder(orderId,deliverystatus);
 		if (e==false) {
-			throw new IdNotFoundException("Update details Unsuccessful,Provided Id does not exist");
+			return new ResponseEntity<String>("Update details Unsuccessful,Provided Id does not exist",HttpStatus.NOT_FOUND);
 		} else {
 			return new ResponseEntity<String>("delivery status updated successfully", new HttpHeaders(), HttpStatus.OK);
+		}
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<String>("Update details Unsuccessful,Provided Id does not exist",HttpStatus.NOT_FOUND);
 		}
 	}
 }

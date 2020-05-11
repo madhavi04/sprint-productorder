@@ -61,16 +61,23 @@ public Orders getProductOrder(String distributorId,LocalDate sd,LocalDate ed)
 	
 }
 @Transactional
-public boolean updateproductorder(ProductOrder f)
+public boolean updateproductorder(int orderId,String deliverystatus)
 {
-	ProductOrder v=pod.findById(f.getOrderId()).get();
+	ProductOrder v=pod.findById(orderId).get();
 	if(v!=null)
 	{
-		v.setDeliverystatus(f.getDeliverystatus());
-		return true;
+		if(v!=null)
+		{
+			v.setDeliverystatus(deliverystatus);
+			return true;
+		}
+		return false;
 	}
 	return false;
 }
-
+	
 }
+
+	
+	
 

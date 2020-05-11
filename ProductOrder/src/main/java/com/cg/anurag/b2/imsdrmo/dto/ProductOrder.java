@@ -39,11 +39,11 @@ public class ProductOrder {
 	@Column(name="deliverystatus")
 	private String deliverystatus;
 	@Column(name="productid")
-	private int productId;
+	private String productId;
 	public ProductOrder() {}
 	public ProductOrder(int orderId, String productname, double priceperunit, double quantityvalue,
 			double totalprice, String warehouseId, String distributorId, LocalDate dateoforder, LocalDate dateofdelivery,
-			Date manufacturingdate, Date expirydate, String deliverystatus,int productId) {
+			Date manufacturingdate, Date expirydate, String deliverystatus,String productId) {
 		this.orderId = orderId;
 		this.productname = productname;
 		this.priceperunit = priceperunit;
@@ -58,10 +58,11 @@ public class ProductOrder {
 		this.deliverystatus = deliverystatus;
 		this.productId=productId;
 	}
-	public int getProductId() {
+	
+	public String getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 	public int getOrderId() {
